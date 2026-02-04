@@ -1,9 +1,9 @@
 <Solution>
   <Folder Name="/Services/" />
   <Folder Name="/Services/Flashcard/">
-    <Project Path="Flashcard.Api/Flashcard.Api.csproj" Id="f57946b6-c125-4c2c-b1d2-d033fb579aea" />
-    <Project Path="Flashcard.Application/Flashcard.Application.csproj" Id="d727f973-ace1-4d0a-9f0c-42a63a6820da" />
-    <Project Path="Flashcard.Domain/Flashcard.Domain.csproj" Id="81c53fc0-0255-4849-9fbc-cd5c97ea5f70" />
-    <Project Path="Flashcard.Infrastructure/Flashcard.Infrastructure.csproj" Id="da61eb8b-a0b8-4686-b3ef-cf359ae2f082" />
+    <Project Path="Services/Flashcard/Flashcard.Api/Flashcard.Api.csproj" />
+    <Project Path="Services/Flashcard/Flashcard.Application/Flashcard.Application.csproj" />
+    <Project Path="Services/Flashcard/Flashcard.Domain/Flashcard.Domain.csproj" />
+    <Project Path="Services/Flashcard/Flashcard.Infrastructure/Flashcard.Infrastructure.csproj" />
   </Folder>
 </Solution>
