@@ -21,4 +21,9 @@ public class FlashcardRepository : IFlashcardRepository
         await _context.Flashcards.AddAsync(flashcard);
         await _context.SaveChangesAsync();
     }
+    public async Task AddRangeAsync(IEnumerable<FlashcardItem> entities)
+    {
+        await _context.Flashcards.AddRangeAsync(entities);
+        await _context.SaveChangesAsync();
+    }
 }

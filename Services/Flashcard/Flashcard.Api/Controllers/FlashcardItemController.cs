@@ -31,4 +31,11 @@ public class FlashcardItemController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpPost("bulk")]
+    public async Task<IActionResult> CreateRange([FromBody] IEnumerable<FlashcardItemRequest> requests)
+    {
+        var result = await _service.CreateRangeAsync(requests);
+        return Ok(result);
+    }
 }
