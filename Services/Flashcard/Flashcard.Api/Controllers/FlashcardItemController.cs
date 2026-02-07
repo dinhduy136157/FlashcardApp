@@ -32,6 +32,13 @@ public class FlashcardItemController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("group/{groupId:guid}")]
+    public async Task<IActionResult> GetByGroupId(Guid groupId)
+    {
+        var result = await _service.GetByGroupIdAsync(groupId);
+        return Ok(result);
+    }
+    
     [HttpPost("bulk")]
     public async Task<IActionResult> CreateRange([FromBody] IEnumerable<FlashcardItemRequest> requests)
     {

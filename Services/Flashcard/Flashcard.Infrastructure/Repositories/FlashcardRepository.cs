@@ -26,4 +26,11 @@ public class FlashcardRepository : IFlashcardRepository
         await _context.Flashcards.AddRangeAsync(entities);
         await _context.SaveChangesAsync();
     }
+    public async Task<IEnumerable<FlashcardItem>> GetByGroupIdAsync(Guid groupId)
+    {
+        return await _context.Flashcards
+            .Where(f => f.GroupId == groupId)
+            .OrderByDescending(f => f.CreatedAt)
+            .ToListAsync();
+    }
 }

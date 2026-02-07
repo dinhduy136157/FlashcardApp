@@ -8,4 +8,5 @@ public interface IFlashcardRepository
     Task<Entities.FlashcardItem?> GetByIdAsync(Guid id);
     Task AddAsync(Entities.FlashcardItem flashcard);
     Task AddRangeAsync(IEnumerable<FlashcardItem> entities);
+    Task<IEnumerable<FlashcardItem>> GetByGroupIdAsync(Guid groupId);
 }

@@ -68,4 +68,25 @@ public class FlashcardItemService : IFlashcardItemService
 
         return _mapper.Map<IEnumerable<FlashcardItemResponse>>(entities);
     }
+    public async Task<IEnumerable<FlashcardItemResponse>> GetByGroupIdAsync(Guid groupId)
+    {
+        string groupCacheKey = $"flashcards_group_{groupId}";
+        var cachedData = await _cache.GetStringAsync(groupCacheKey);
+
+        if (!string.IsNullOrEmpty(cachedData))
+        {
+            return JsonSerializer.Deserialize<IEnumerable<FlashcardItemResponse>>(cachedData)!;
+        }
+
+        var entities = await _repository.GetByGroupIdAsync(groupId);
+        var response = _mapper.Map<IEnumerable<FlashcardItemResponse>>(entities);
+
+        var options = new DistributedCacheEntryOptions()
+            .SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
+
+        // Cache lại kết quả theo GroupId
+        await _cache.SetStringAsync(groupCacheKey, JsonSerializer.Serialize(response), options);
+
+        return response;
+    }
 }
