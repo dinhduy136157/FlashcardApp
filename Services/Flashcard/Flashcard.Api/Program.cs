@@ -2,6 +2,7 @@ using Flashcard.Application.Interfaces;
 using Flashcard.Application.Services;
 using Flashcard.Domain.Interfaces;
 using Flashcard.Infrastructure.Context;
+using Flashcard.Infrastructure.Repositories;
 using Flashcard.Infrastructure.Repositories.Implementations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
@@ -15,7 +16,12 @@ builder.Services.AddDbContext<FlashcardDbContext>(options =>
 builder.Services.AddAutoMapper(new[] { typeof(Flashcard.Application.Mappings.AutoMapperProfile) });
 
 builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+
 builder.Services.AddScoped<IFlashcardItemService, FlashcardItemService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IGroupService, GroupService>();
 
 builder.Services.AddEndpointsApiExplorer();
 

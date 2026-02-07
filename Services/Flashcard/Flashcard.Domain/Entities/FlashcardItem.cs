@@ -6,5 +6,7 @@ public class FlashcardItem
     public string Word { get; set; } = string.Empty;
     public string Meaning { get; set; } = string.Empty;
     public string? Example { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public Guid GroupId { get; set; }
+    public Group Group { get; set; } = null!;
+    public DateTime CreatedAt { get; set; }
 }
