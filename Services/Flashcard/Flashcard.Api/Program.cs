@@ -13,6 +13,19 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<FlashcardDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins("http://localhost:5173") // Port của Vite
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                      });
+});
+
 builder.Services.AddAutoMapper(new[] { typeof(Flashcard.Application.Mappings.AutoMapperProfile) });
 
 builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
@@ -49,6 +62,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors(MyAllowSpecificOrigins);
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
